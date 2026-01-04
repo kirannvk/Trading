@@ -1,0 +1,61 @@
+# Copy to config.yaml and fill secrets locally. Do not commit secrets.
+auth:
+  user_id: "GIR825"
+  password: "Ajay@1998"
+  totp_secret: "QHP6AG4HUBDB3TCARB3PJ3IT25ZPHHQX"  # Base32 secret; we will generate TOTP for login
+  api_key: "AlgoTrader"
+
+risk:
+  capital: 500000         # total capital in INR
+  per_trade_risk_pct: 0.5 # % of capital at risk per trade
+  daily_loss_pct: 1.5     # stop trading for the day when exceeded
+  max_concurrent: 2       # max simultaneous strategies/positions
+  leg_stop_pct: 25        # per-leg hard stop %
+  cooldown_trades: 2      # pause after N losses
+
+session:
+  start: "09:30"
+  end: "15:10"
+  skip_open_minutes: 5
+  skip_close_minutes: 5
+
+execution:
+  slippage_ticks: 1
+  order_type: "LIMIT"
+  exchange: "NFO"
+  product: "MIS"
+
+strategy:
+  underlying: "NIFTY"
+  wing_distance_pct: 1.0
+  rebalance_time: "12:30"
+  exit_time: "14:45"
+
+backtest:
+  interval: "5minute"
+  lookback_days: 45
+  include_costs: true
+  brokerage_per_order: 40
+  allowed_regimes: [RANGE, TREND, EVENT]
+  trade_log_path: "backtest_trades.csv"
+  summary_path: "backtest_trades_summary.json"
+  equity_curve_path: "backtest_equity_curve.csv"
+  ce_path: ""   # optional: path to local CE candles (parquet/csv)
+  pe_path: ""   # optional: path to local PE candles (parquet/csv)
+
+monitoring:
+  dashboard: true
+  alerts:
+    email:
+      enabled: true
+      to: "solletyketankumar@gmail.com"
+      from: "solletisukeshkumar@gmail.com"
+      smtp_server: "smtp.gmail.com"
+      smtp_port: 587
+      smtp_user: "solletisukeshkumar@gmail.com"
+      smtp_password: "ijcaohodcfnbvhdf"  # e.g., app password if   using Gmail
+      min_pnl_notify: 0
+      min_drawdown_notify: 0
+
+trade_mode: "paper"  # or "real"
+#trade_mode: "real"
